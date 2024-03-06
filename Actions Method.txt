@@ -1,0 +1,254 @@
+                                          #Actions#(IMP)
+
+--- Action is a concreate class of selenium.
+--- It is used to perform keyboard & mouse actions:(Actions class is having 21 methods)
+  1> mouse Hovering action:
+
+                      1> moveToElement(webelement): -- Used to mouse hovering on targeted element.
+                      2> moveToElement(WebElement target, int x offset , int y offset):  --- To perform mousehovering action on element on the given pixel values.
+                          If we give +ve value then it move to right side & if give -ve value then move towards left side from targeted element.
+   
+                      3> moveByElement(int x Offset , int y offset):-- it is not mouse hovering ,  it just used to move mouse on webpage on given pixel values.
+
+  2> Drag & drop action:-- dragAndDrop(): --  to perform dragging the element from source & drop in the destination.
+
+  3> Right click action: contextClick(WebElement ele)
+     
+     DoubleClick(): -- To perform double click on webpage.
+  4> Double click action : doubleClick(WebElement ele):---To perform double click on targeted webelement.
+
+  5>key Down action:
+  6> key Up action: 
+
+  7> Click(): --- To perform clicking operation on entire webpage.
+
+  8> Click(WebElement target): -- To perform clicking operation on Targeted webelement on webpage.
+  
+  9> ContextClick()---  To perform rightclick operation on entire webpage.
+
+  10> ContextClick(Webelement target):-- To perform right click operation on targeted webelement.
+
+  11> clickAndHold(): -- To perform clicking and holding the on webpage.
+
+  12> clickAndHold(Webelement targeted): --- To perform click and hold operation on targeted element on webpage.
+
+  13> Release(): -- To perform release operation on webpage 
+
+  14> Release(Webelement targeted): --- To perform release operation on targeted element on webpage.
+
+  15> perform() :  -- To perform action on webpage/webelement.
+                   -- All the actions will be executed only when perform() method is called.
+                  -- ReturnType is void.
+                  -- All actions stored in actions array.
+
+  16> sendkeys(charSequence..ch):
+  
+  17> sendkeys(webelement targeted, charSequence)----- to perfrom entering data.clicking,delete,backspace.
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------                  
+
+
+                        ----Steps use actions class---
+
+1> identify the targeted Webelement on webpage
+2> create object of Actions class
+3> pass webdriver refrence as an argument to actions constructor
+4> call the appropriate action on element. 
+5> call perform() method
+
+------------------------------------------------------------------------
+
+
+
+date 17-02-24
+                                            # Select #<class>
+ -- select class is used to handle dropdown.
+ -- There are two types of dropdown:
+   1> single list dropdown:
+   2> Multi list dropdown:
+ -- it is concreate class of selenium
+ -- With the help of select class we can select & deselect the element in dropdown.
+
+
+
+  #steps to use select class:
+
+1> Identify targeted element(i.e. dropdown) with method findelement().Where the targeted element should have <select> tag.
+
+2> create the object of Select class.
+
+3> And pass targeted element as argument in select constructor.
+
+4>call appropriate non-static methods of select class to perform action.
+
+         **methods of select class**
+
+1> isMultiple() :  this method check targeted element(dropdown) is single list dropdown or multi list  dropdown.
+                   --And its return type is boolean.
+                   -- It returns true when targeted element is multi list dropdown.
+                   -- It returns false when targeted element is single list dropdown.
+
+2> getOptions() :
+                  -- 	It gives all the options of targeted dropdown which is prsent inside <select> tag.
+                  --Return type is list<webelement>.
+                  -- this method returns multiple options.
+
+3> SelectByVisibleText(): --- To select element in dropdown.
+                          --- return type is void.
+                          --- pass argument in the form of String.
+                          --- We select the element on the bases of text.
+
+4> SelectByValue(): 
+                         --- To select element in dropdown.
+                          --- return type is void.
+                          --- pass argument in the form of String.
+                          --- We select the element on the bases of Attribute value.
+
+5> SelectByIndex() : 
+                          ---To select element in dropdown.
+                          --- return type is void.
+                          --- pass argument in the form of String.
+                          --- We select the element on the bases of index value.
+
+                              ** index value starts from 0.
+
+6> DeselectByIndex():
+7> DeselectByVisibleText()
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+date(19-02-24)
+
+                           ****************************Synchronization**********************************
+
+        Synchronization: It is a process of matching Application loading speed and automation script execution speed , it is called as Synchronization.
+
+           -- Application Loading speed is depeneds on INTERNET .
+           -- Automation script speed is always faster.
+           -- Automation script speed & application speed both should be matched then we are going to get proper output.
+           -- Automation script speed & application speed both speeds are not matching then we get "NoSuchElemenetException" .
+           --
+           
+
+  Q> When NoSuchElemenetException occures??
+  1> Automation script speed & application speed both speeds are not matching then we get "NoSuchElemenetException" .
+  2>  When source code is incorrect
+
+ 
+
+-- To slow down the speed of Automation script speed execution we are going to use delay(waits).
+
+                   **ways of Waits to slow down the automation script speed**
+
+   1> Implicit wait : 
+                -- The implicit wait is applicable only for two methods i.e findElement() ane findElements().
+                -- We are getting NoSuchElementException (for findElement() method) And emptyList<Webelement>Exception (for findElements() method) .
+                -- For every cycle it is having 500 milliseconds polling period / wait frequency / time interval. 
+                -- it is also called "intelligent wait" , beacuse it save time.
+
+  **Cycle how implicit wait works: Implicit wait is 2seconds(When internet is slow)
+
+ 1st cycle: ----- findElement() / findElements() -------- element is not present --- time is not over --- 
+  wait for 500milliseconds(0.5s)----(remaining time 1.5s)
+
+ 2nd cycle: ----- findElement() / findElements() -------- element is not present --- time is not over ---
+  wait for 500milliseconds(0.5s)----(remaining time 1s)
+
+ 3rd cycle: ----- findElement() / findElements() -------- element is not present --- time is not over ---
+  wait for 500milliseconds(0.5s)----(remaining time 0.5s)
+
+ 4th cycle: ----- findElement() / findElements() -------- element is not present --- time is not over ---
+  wait for 500milliseconds(0.5s)----(remaining time 0s)
+
+ 5th cycle: ----- findElement() / findElements() -------- element is not present --- time is over ---
+  NoSuchElementException / emptyList<Webelement>Exception
+
+
+
+   2> Explicit wait(): 
+                   -- it is also called "intelligent wait" , beacuse it save time.
+                   -- For every cycle it is having 500 milliseconds polling period / wait frequency / time interval. 
+                   -- We are getting TimeOutException .
+
+   3> Fluent wait:  used when if we want to make changes in polling period / wait frequency / time interval.
+   4> thread.sleep(): 
+
+                -- It is also having name blind wait , because it wont leave the control to the next line untill given tim is completed.
+                -- Here we apply wait in the form of milliseconds.
+                -- It is applicable only for current line.
+
+
+
+   5> Pageloadtimeout():
+                   --- applicable only for get() and navigate().to() method
+                   --- by default both method are having infinite time delay so it is not throwing any exception.
+                   --- 
+
+
+
+
+
+
+
+ *** difference bet implicite & explicite
+
+i
+
+1> applicable only for findelement()
+2> not work on conditions
+3> getting exception NoSuchElement
+4> timining is in seconds,milliseconds,ps etc.
+
+
+e
+
+1> rather then find findelement()
+2>work on conditions
+3> getting exception timeout
+4>timing in only in the form of seconds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
